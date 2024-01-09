@@ -10,57 +10,52 @@ On Clicking Produce Bill button, alert should be displayed with total amount -->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Produce Bill</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <script type = "text/javascript" src = "./jquery-3.7.1.min.js">
+        <title>Laptop Phone Bill </title>
+        <script type = "text/javascript" src = "./jquery-3.7.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                const pricesLaptop = { HP:100000, Nokia: 90000, Samsung: 110000, Motorola: 99000, Apple: 200000 }
+                const pricesMobile = { HP:550000, Nokia: 60000, Samsung: 90000, Motorola: 69000, Apple: 100000 }
+                $("button").click(function () {
+                    let company = $("#items").children("option:selected").val()
+                    let [Laptop] = $("#Laptop:checked")
+                    let [Mobile] = $("#Mobile:checked")
+                    let quantity = parseInt($("#quantity").val())
+                    var result = 0;
+                    if (Laptop) {
+                        result += quantity*pricesLaptop[company]
+                    }
+                    if (Mobile) {
+                        result += quantity * pricesMobile[company]
+                    }
+                    alert(Total Amount: ${result});
+                })
+            })
         </script>
-        <script type = "text/javascript" language = "javascript"></script>
     </head>
     <body>
-        <label for="cars">Choose a brand:</label>
-        <select name="BRAND" id="brand">
-            <option value="HP">HP</option>
-            <option value="Nokia">Nokia</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Motorola">Motorola</option>
-            <option value="Apple">Apple</option>
-        </select>
-        <br>
-        <br>
-        
-        <label for="mobile"><input type="checkbox" id="mobile" name="mobile" value = "yes"> Mobile
-        </label><br>
-        
-        <label for="laptop">
-            <input type="checkbox" id="laptop" name="laptop" value="yes"> Laptop
-        </label><br>
-        <br>
-        <br>
-        <input id="numb">
-        <button onclick="suuu()" id ="btn">Produce Bill</button>
-        <script type = "text/javascript" language = "javascript">
-            const laptopPrices={HP:100000, Nokia: 90000, Samsung: 110000, Motorola: 99000, Apple: 200000}
-            const mobilePrices={HP:550000, Nokia: 60000, Samsung: 90000, Motorola: 69000, Apple: 100000}
-            const isPhone = document.querySelector('mobile');
-            const isLaptop = document.querySelector('laptop');
-            var brand = document.getElementById("brand");
-            var quantity = document.getElementById("numb");
-            var total=0;
-            function suuu()
-            {
-                if(isLaptop.checked == true)
-                {
-                    total=total+quantity*laptopPrices[brand];
-                }
-                if(isPhone == true)
-                {
-                    total=total+quantity*mobilePrices[brand];
-                }
-                alert("COST: ",total);
-            }
-            console.log(total);
-        </script>
+        <div id="container">
+            <label for="items">Brand:</label><br /><br />
+            <select id="items" name="items">
+                <option value="HP" selected>HP</option>
+                <option value="Nokia">Nokia</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Motorola">Motorola</option>
+                <option value="Apple">Apple</option>
+                <option value="ASUS">ASUS</option>
+            </select>
+            <br><br>
+
+            <input type="checkbox" id="Mobile" name="Mobile" value="Mobile">
+            <label for="Mobile">Mobile</label><br><br>
+            <input type="checkbox" id="Laptop" name="Laptop" value="Laptop">
+            <label for="Laptop">Laptop</label><br><br>
+
+            <label for="quantity">Enter quantity:</label>
+            <br><br>
+            <input id="quantity" type="text" /><br /><br />
+
+            <button type="button" id = "btn">Produce Bill!</button>
+        </div>
     </body>
 </html>
