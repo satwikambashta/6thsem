@@ -1,0 +1,70 @@
+<!-- Design a calculator to perform basic arithmetic operations. Use textboxes and buttons 
+to design web page. -->
+
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>calculator</title>
+        <style>
+            button{
+                align-items: center;
+                padding: 15px;
+                background-color: aqua;
+                border-radius: 5px;
+                cursor:pointer;
+            }
+            button:hover{
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+        <h1>CALCULATOR</h1>
+            <input id="res" readonly><br><br>
+            <button onclick="append(1)">1</button>
+            <button onclick="append(2)">2</button>
+            <button onclick="append(3)">3</button>
+            <button onclick="append('+')">+</button><br><br>
+            <button onclick="append(4)">4</button>
+            <button onclick="append(5)">5</button>
+            <button onclick="append(6)">6</button>
+            <button onclick="append('-')">-</button><br><br>
+            <button onclick="append(7)">7</button>
+            <button onclick="append(8)">8</button>
+            <button onclick="append(9)">9</button>
+            <button onclick="append('*')">*</button><br><br>
+            <button onclick="clearit()">C</button>
+            <button onclick="append(0)">0</button>
+            <button onclick="append('/')">/</button>
+            <button onclick="calculate()">=</button>  
+
+        </div>
+    </body>
+    <script>
+        var result=document.getElementById("res");
+        var x=""
+        function append(rr){
+            x+=rr;
+            res.value=x;
+        }
+        function clearit(){
+            x=0;
+            res.value=x;
+        }
+        function calculate(){
+            try{
+                let result = eval(x);
+                x=result;
+                res.value=result;
+            }
+            catch(err)
+            {
+                res.value="error";
+                x="";
+            }
+            
+        }
+    </script>
+</html>

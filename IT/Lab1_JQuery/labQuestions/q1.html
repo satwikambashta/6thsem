@@ -1,0 +1,68 @@
+<!-- Write a web page which contains table with 3 X 3 dimensions (fill some data) and 
+one image. Style the rows with alternate color. Move the table and image together from 
+right to left when button is clicked -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <style>
+            table,th{
+                border: solid black;
+            }
+            tr:nth-child(even){
+                background-color: aqua;
+            }
+            img{
+                width: 256px;
+            }
+        </style>
+
+        <script type = "text/javascript" src = "./jquery-3.7.1.min.js">
+        </script>
+        <script type = "text/javascript" language = "javascript">
+        $(document).ready(function() {
+            $("button").click(function(){
+            $("div").animate({right:'500px'});
+            $("div").animate({left:'500px'});
+        });
+
+        });
+        </script>
+
+    </head>
+    <body>
+        <div style="position: relative">
+            <table>
+                <tr>
+                    <th>Heading1</th>
+                    <th>Heading2</th>
+                    <th>Heading3</th>
+                </tr>
+                <tr>
+                    <td>val</td>
+                    <td>val</td>
+                    <td>val</td>
+                </tr>
+                <tr>
+                    <td>val</td>
+                    <td>val</td>
+                    <td>val</td>
+                </tr>
+                <tr>
+                    <td>val</td>
+                    <td>val</td>
+                    <td>val</td>
+                </tr>
+            </table>
+            <img src="https://wallup.net/wp-content/uploads/2016/01/220756-Batman-Batman_Arkham_Knight-748x555.jpg">
+        </div>
+        <button>CLICK ME FOR ANIMATION</button>
+    </body>
+</html>
