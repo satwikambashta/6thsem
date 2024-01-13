@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
         MPI_Recv(&str, strlen(str)+1, MPI_CHAR, 0, 1,MPI_COMM_WORLD, &status);
         fprintf(stdout, "\nI have received %s in process 1\n",str);
         fflush(stdout);
-        for(int i=0; i<5; i++)
+        for(int i=0; i<size; i++)
         {
             if(str[i]>65 && str[i]<90)
                 str[i]+=32;
