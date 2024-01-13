@@ -1,8 +1,31 @@
 <html>
  <head>
    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Calculator</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Calculator</title>
+  <style type="text/css">
+        table { 
+            border: 1px solid black; 
+            margin: 2rem; 
+        }
+        input[type="button"] { 
+            width: 100%;
+            padding: 1rem; 
+            background-color: black;
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+        }
+        input[type="button"]:hover {
+            background-color: gray;
+        }
+        #resBox { 
+            padding: 1rem; 
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 10rem;
+        } 
+    </style>
     <script type = "text/javascript" src = "./jquery-3.7.1.min.js"></script>
     <script type = "text/javascript" language = "javascript">
         $(document).ready( 
@@ -46,29 +69,7 @@
             }
         );
     </script>
-    <style type="text/css">
-        table { 
-            border: 1px solid black; 
-            margin: 2rem; 
-        }
-        input[type="button"] { 
-            width: 100%;
-            padding: 1rem; 
-            background-color: black;
-            color: white; 
-            border: none; 
-            border-radius: 5px; 
-        }
-        input[type="button"]:hover {
-            background-color: gray;
-        }
-        #resBox { 
-            padding: 1rem; 
-            border: 1px solid black;
-            border-radius: 5px;
-            width: 10rem;
-        } 
-    </style>
+    
     </head>
  <body>
     <table id="calcu"> 
@@ -98,8 +99,8 @@
             <td><input type="button" value="-"></td> 
         </tr> 
         <tr> 
-            <td colspan="2"><input type="button" value="0"></td> 
-            <td><input type="button" value="="></td> 
+            <td><input type="button" value="0"></td> 
+            <td colspan="2"><input type="button" value="="></td> 
             <td><input type="button" value="+"></td> 
         </tr> 
     </table> 
