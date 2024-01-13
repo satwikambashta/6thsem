@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
     {
         printf("Enter a number in master process: ");
         scanf("%d",&x);
-        for(int i=0; i<5; i++)
+        for(int i=0; i<size; i++)
         {
             MPI_Send(&x, 1, MPI_INT, i,1, MPI_COMM_WORLD);
         
