@@ -1,0 +1,108 @@
+<!-- Design a web page which shows the database oriented CRUD operation. Consider 
+Employee data -->
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CRUD</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h1 class="font-weight-bold">TABLE</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+        </table>
+        <br><br>
+
+        <h2> CREATE</h2>
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">First</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Last</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Handle</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="handle">
+            </div>
+            <button type="submit" class="btn btn-success">CREATE</button>
+        </form></br></br>
+
+        <h2>UPDATE</h2>
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Select entry: </label>
+              <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+              <div class="form-group">
+                <label for="name">New First Name</label>
+                <input type="number" class="form-control" id="name" placeholder="first name" />
+              </div>
+              <div class="form-group">
+                <label for="name">New Last Name</label>
+                <input type="text" class="form-control" id="name" placeholder="last name" />
+              </div>
+              <div class="form-group">
+                <label for="name">New Handle</label>
+                <input type="number" class="form-control" id="name" placeholder="handle" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">UPDATE</button>
+          </form><br><br>
+
+        <h2>DELETE</h2>
+        <form>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Select entry: </label>
+              <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-danger">DELETE</button>
+          </form>
+    </body>
+</html>

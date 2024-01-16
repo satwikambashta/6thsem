@@ -1,0 +1,112 @@
+<!--  Create a web page using bootstrap as mentioned. Divide the page in to 2 parts top and 
+bottom, then divide the bottom into 3 parts and design each top and bottom part using different
+input groups, input, badges, buttons and button groups. Make the design more attractive-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <img src="https://conference.manipal.edu/Registration/img/MAHE-logo.jpg" width="256px">
+    <div class="container">
+        <br><br><br>
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+          <form data-bs-theme="dark">
+            <div class="form-group">
+                <label for="nsamebox" class="font-weight-bold">Student Name</label>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Submit</button>
+            </div>
+        </form></br></br>
+    </div>
+    <div class='row' style="min-height: 400px">
+        <div class="col-sm-4">
+            <h1>Notifications</h1>
+            </br>
+            <!-- BADGE -->
+            <button type="button" class="btn btn-warning">
+                CALLS <span class="badge badge-light">4</span>
+            </button>
+            </br>
+            <button type="button" class="btn btn-warning">
+                MESSAGES <span class="badge badge-light">5</span>
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-4">
+                <h1>Notifications</h1>
+                </br>
+                <!-- BADGE -->
+                <button type="button" class="btn btn-success">
+                    CALLS <span class="badge badge-dark">4</span>
+                </button>
+                </br>
+                <button type="button" class="btn btn-success">
+                    MESSAGES <span class="badge badge-dark">5</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-4">
+                <h1>Notifications</h1>
+                </br>
+                <!-- BADGE -->
+                <button type="button" class="btn btn-danger">
+                    CALLS <span class="badge badge-light">4</span>
+                </button>
+                </br>
+                <button type="button" class="btn btn-danger">
+                    MESSAGES <span class="badge badge-dark">5</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
