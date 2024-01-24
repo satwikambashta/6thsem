@@ -2,10 +2,8 @@
 
 def main():
 	string1=input("Enter a word: ")
-	i=len(string1)
-	#for x in range(i):
-	#	if(string1[x]<65):
-	#		print("Invalid")
-	print(str(sorted(string1)))
+	string1 = input("Enter a word: ")
+	sorted_string = ''.join(sorted(string1))
+	print(sorted_string)
 if __name__ == '__main__':
 	main()
