@@ -41,9 +41,9 @@ int main(int argv, char *argc[])
     MPI_Gather(sendStr, 2 * length, MPI_CHAR, result, 2 * length, MPI_CHAR, 0, MPI_COMM_WORLD);
     if (rank == 0)
     {
-        result[2 * n * size] = '\0';
+        result[sizeof(result) / sizeof(result[0])] = '\0';
         printf("The result is : ");
-        for (int i = 0; i <sizeof(result) / sizeof(result[0]);; i++)
+        for (int i = 0; i <sizeof(result) / sizeof(result[0]); i++)
         {
             printf("%c", result[i]);
         }
