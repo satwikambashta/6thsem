@@ -9,6 +9,7 @@
 int main(int argv, char *argc[])
 {
     int rank, size, result, length;
+    int B[10];
 
     MPI_Init(&argv, &argc);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -33,13 +34,24 @@ int main(int argv, char *argc[])
             continue;    
         sendResult++;
     }
-    printf("Process %d found %d non vowels\n", rank, sendResult);
-    MPI_Reduce(&sendResult, &result, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-
+    MPI_Gather(&sendResult, 1, MPI_INT, B, 1, MPI_INT, 0, MPI_COMM_WORLD);
     if (rank == 0)
     {
+        for(int i=0; i<size; i++)
+        {
+            printf("Rank: %d had %d non-vowels", i, B[i]);
+        }
         printf("The total non-vowels are : %d\n", result);
     }
+    
+    // printf("Process %d found %d non vowels\n", rank, sendResult);
+    // MPI_Reduce(&sendResult, &result, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+
+    // if (rank == 0)
+    // {
+    //     printf("The total non-vowels are : %d\n", result);
+    // }
+    
         
     free(str);
     MPI_Finalize();
