@@ -8,7 +8,7 @@
 
 int main(int argv, char *argc[])
 {
-    int rank, size, length, n = 3;
+    int rank, size, length;
     MPI_Init(&argv, &argc);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -43,7 +43,7 @@ int main(int argv, char *argc[])
     {
         result[2 * n * size] = '\0';
         printf("The result is : ");
-        for (int i = 0; i < 2 * n * size; i++)
+        for (int i = 0; i <sizeof(result) / sizeof(result[0]);; i++)
         {
             printf("%c", result[i]);
         }
