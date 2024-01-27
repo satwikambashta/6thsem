@@ -17,7 +17,7 @@ int factorial(int a)
            fact*=a; 
            a--;
         }
-        return fact;
+        // return fact;
         
     }
 }
