@@ -46,7 +46,6 @@ int main(int argv, char *argc[])
         for (int i = 0; i <sizeof(result) / sizeof(result[0]); i++)
         {
             printf("%c", result[i]);
-            result+=B[i];
         }
         printf("\n");
     }
