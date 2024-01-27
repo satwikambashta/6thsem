@@ -40,6 +40,7 @@ int main(int argv, char *argc[])
         for(int i=0; i<size; i++)
         {
             printf("Rank: %d had %d non-vowels", i, B[i]);
+            result+=B[i];
         }
         printf("The total non-vowels are : %d\n", result);
     }
