@@ -17,12 +17,14 @@ int main(int argv, char *argc[]){
 		printf("Enter M: ");
 		scanf("%d", &m);
 		numbers = (int *)calloc(size * m, sizeof(int));
-		for(int i=0; i<M*N; i++)
-	        {
-	            fprintf(stdout, "Enter A[%d] value: \n",i);
-	            fflush(stdout);
-	            scanf("%d", &A[i]);
-	        } 
+        printf("Enter %d number(s): ", size * m);
+		
+        for (int i = 0; i < size * m; i++)
+        {
+            fprintf(stdout, "Enter A[%d] value: \n",i);
+	        fflush(stdout);
+            scanf("%d", &numbers[i]);
+        }
 	}
 
 	MPI_Bcast(&m, 1, MPI_INT, 0, MPI_COMM_WORLD);
