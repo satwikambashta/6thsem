@@ -39,9 +39,22 @@ int main(int argc, char *argv[]) {
                 scanf("%d",&mat[i][j]);
             }
         }
+        for(int i=1; i<4; i++)
+        {
+            for(int j=0; j<4; j++)
+            {
+               mat[i][j]+=mat[i-1][j];
+            }
+        }
     }
+
+    //the question only states to print the output using different processes
     array = (int *)calloc(4, sizeof(int));
     MPI_Scatter(mat, 4, MPI_INT, array, 4, MPI_INT, 0, MPI_COMM_WORLD);
+    
+    for(int i=0; i<4; i++)
+        print("%d\t", array[i]);
+    
     
     MPI_Finalize();
     return 0;
