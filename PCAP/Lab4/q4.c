@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
     
     for(int i=0; i<4; i++)
         print("%d\t", array[i]);
+    printf("\n");
     
     
     MPI_Finalize();
