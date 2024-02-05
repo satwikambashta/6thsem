@@ -7,6 +7,8 @@ clientSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientSock.connect((serverIP, serverPort))
 
 message = input("Input integers with space in between: ").encode()
+# clientSock.connect((serverIP, serverPort))
+# message = raw_input("Input integers with space in between: ")
 #message2 = input("Enter the length of the set: ").encode()
 
 clientSock.send(message)
