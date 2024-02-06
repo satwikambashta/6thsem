@@ -1,5 +1,5 @@
 //integrating 4/(1+x^2). divide area under curve into rectangles and distribute. handle different errors
-
+//incorrect
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpi.h"
