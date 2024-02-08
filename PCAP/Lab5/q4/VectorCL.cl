@@ -1,13 +1,13 @@
-__kernel void vector_bin(__global const int* binaryInput, __global int* decimalOutput) {
-        int id = get_global_id(0);
-        int binaryValue = binaryInput[id];
-        int decimalValue =  0;
-        for (int i =  0; i <  32; i++) {
-            int powerOfTwo =  1 << i;
-            if ((binaryValue & powerOfTwo) !=  0) {
-                decimalValue += powerOfTwo;
+__kernel void vector_bin(__global const int* A, __global int* C) {
+        int i = get_global_id(0);
+        int bin = A[id];
+        int dec =  0;
+        for (int j =  0; i <  32; j++) {
+            int twop =  1 << j;
+            if ((bin & twop) !=  0) {
+                dec += twop;
             }
         }
-        decimalOutput[id] = decimalValue;
+        C[i] = dec;
     
 }
