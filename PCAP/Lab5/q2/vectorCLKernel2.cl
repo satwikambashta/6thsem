@@ -1,28 +1,12 @@
-__kernel void vector_bin(__global int *A, __global int *C) {
-
-  int i = get_global_id(0);
-  C[i]=~A[i];
-//   int bin=0, k=0;
-//   int q=A[i];
-//   int comp[100];
-//   while(q!=0)
-//   {
-//     comp[i++] = q % 10;
-//     if(A[i] == '1')
-//     {
-//             comp[i] = '0';
-//     }
-//     else if(A[i] == '0')
-//     {
-//             comp[i] = '1';
-//     }
-//     q=q/10;
-//     bin++;
-//   }
-//     for(int i=0; i<bin; i++)
-//     {
-//         k=k*10+comp[i];
-//     }
-//   C[i]=k;
-  
+__kernel void vector_ones_complement(__global char * A, __global char * B) {
+    int i = get_global_id(0);
+    int m = 4;
+    int k = i * m;
+    for (int j = 0; j < m; j++)
+    {
+             if(A[k+j]==0)
+                  B[k+j]=1;
+              else if(A[k+j]==1)
+                  B[k+j]=0;
+    }
 }
