@@ -1,0 +1,2 @@
+/*Write an OpenCL program which reads a string consisting of N words and reverse each
+word of it in parallel.*/
