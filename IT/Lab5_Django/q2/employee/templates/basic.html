@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Promotion Eligibility</title>
+    <style>
+        .button {
+        background-color: #04AA6D; /* Green */
+        border: none;
+        color: white;
+        padding: 0.5rem 0.5rem;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center">Employee Promotion Eligibility</h1>
+    <form id="promotionForm">
+        <label for="employeeId">Select Employee ID:</label>
+        <select id="employeeId" name="employeeId">
+            <option>1001</option>
+            <option>1002</option>
+            <option>1003</option>
+            <option>1004</option>
+            <option>1005</option>
+            <option>1006</option>
+            <option>1007</option>
+            <option>1008</option>
+            <option>1009</option>
+            <option>1010</option>
+            <option>1011</option>
+            <option>1012</option>
+            <option>1013</option>
+            <option>1014</option>
+        </select>
+        <br>
+        <br>
+        <label for="joinDate">Date of Joining:</label>
+        <input type="date" id="joinDate" name="joinDate">
+        <br>
+        </br>
+        <button type="button" class="button" onclick="checkEligibility()">Am I Eligible for Promotion</button>
+        <br>
+        <label id="resultLabel"></label>
+    </form>
+
+    <script>
+        function checkEligibility() {
+            const joinDate = new Date(document.getElementById("joinDate").value);
+            const currentDate = new Date();
+            const yearsOfExperience = (currentDate - joinDate) / (365 * 24 * 60 * 60 * 1000);
+
+            const resultLabel = document.getElementById("resultLabel");
+            if (yearsOfExperience >= 5) {
+                resultLabel.textContent = "YES";
+            } else {
+                resultLabel.textContent = "NO";
+            }
+        }
+    </script>
+</body>
+</html>
