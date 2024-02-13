@@ -46,7 +46,6 @@
     <Compile Include="q2\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="magazine\static\script.js" />
     <Content Include="magazine\static\styles.css" />
     <Content Include="magazine\templates\basic.html" />
     <Content Include="requirements.txt" />

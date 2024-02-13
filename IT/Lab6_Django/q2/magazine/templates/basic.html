@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
     <script>
-      function update() {
-        // alert("Bruh");
-        var dat = $("#greetxt").val();
-        if (dat.length != 0) {
-          $("#greeting").text(dat);
+        function update() {
+            var dat = $("#greetxt").val();
+            if (dat.length != 0) {
+                $("#greeting").text(dat);
+            }
+            dat = $("#bgc").val();
+            $("#birthday").css("background-color", dat);
+            dat = $("#font").val();
+            $("#birthday").css("font-family", dat);
+            dat = $("input[name='border']:checked").val();
+            $("#birthday").css("outline", dat);
+            dat = $("input[name='defa']:checked").val();
+            if (dat != "useimg") {
+                $("#pic").css("opacity", 0);
+            }
+            else {
+                $("#pic").css("opacity", 100);
+            }
         }
-        dat = $("#bgc").val();
-        $("#birthday").css("background-color", dat);
-        dat = $("#font").val();
-        $("#birthday").css("font-family", dat);
-        dat = $("input[name='border']:checked").val();
-        $("#birthday").css("outline", dat);
-        dat = $("input[name='defa']:checked").val();
-        if (dat != "useimg") {
-          $("#pic").css("opacity", 0);
-        }
-        else{
-          $("#pic").css("opacity", 100);
-        }
-      }
     </script>
-  </head>
+</head>
   <body>
     <div id="parent">
       <div id="birthday">
