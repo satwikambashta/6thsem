@@ -1,61 +1,100 @@
-<!-- Design a webpage. The page contains:
- Dropdown list with HP, Nokia, Samsung, Motorola, Apple as items.
- Checkbox with Mobile and Laptop as items.
- Textbox where you enter quantity.
- There is a button with text as ‘Produce Bill’.
-On Clicking Produce Bill button, alert should be displayed with total amount -->
+<!--  Design a webpage. The page contains: 
+• Dropdown list with HP, Nokia, Samsung, Motorola, Apple as items. 
+• Checkbox with Mobile and Laptop as items. Textbox where you enter quantity. 
+• There is a button with text as ‘Produce Bill’. 
+On Clicking Produce Bill button, alert should be displayed with total amount.  -->
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Laptop Phone Bill </title>
-        <script type = "text/javascript" src = "./jquery-3.7.1.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                const pricesLaptop = { HP:100000, Nokia: 90000, Samsung: 110000, Motorola: 99000, Apple: 200000 }
-                const pricesMobile = { HP:550000, Nokia: 60000, Samsung: 90000, Motorola: 69000, Apple: 100000 }
-                $("button").click(function () {
-                    let company = $("#items").children("option:selected").val()
-                    let [Laptop] = $("#Laptop:checked")
-                    let [Mobile] = $("#Mobile:checked")
-                    let quantity = parseInt($("#quantity").val())
-                    var result = 0;
-                    if (Laptop) {
-                        result += quantity*pricesLaptop[company]
-                    }
-                    if (Mobile) {
-                        result += quantity * pricesMobile[company]
-                    }
-                    alert(Total Amount: ${result});
-                })
-            })
-        </script>
-    </head>
-    <body>
-        <div id="container">
-            <label for="items">Brand:</label><br /><br />
-            <select id="items" name="items">
-                <option value="HP" selected>HP</option>
-                <option value="Nokia">Nokia</option>
-                <option value="Samsung">Samsung</option>
-                <option value="Motorola">Motorola</option>
-                <option value="Apple">Apple</option>
-                <option value="ASUS">ASUS</option>
-            </select>
-            <br><br>
+<head>
+    <title>Q4</title>
+    <script src="./jquery.js"></script>
+    
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        #container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+            const pricesLaptop = { HP:100000, Nokia: 90000, Samsung: 110000, Motorola: 99000, Apple: 200000 };
+            const pricesMobile = { HP:550000, Nokia: 60000, Samsung: 90000, Motorola: 69000, Apple: 100000 };
+            
+            $("#btn").click(function(){
+                let brand = $("#brands option:selected").val();
+                let laptop = $("#laptop").is(':checked');
+                let mobile = $("#mobile").is(':checked');
+                let quantity = parseInt($("#quantity").val());
+                let result = 0;
+                
+                if (laptop) {
+                    result += quantity * pricesLaptop[brand];
+                }
+                if (mobile) {
+                    result += quantity * pricesMobile[brand];
+                }
+                
+                alert("Total Amount : " + result);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <label for="brands">BRAND:</label>
+        <select id="brands" name="brands">
+            <option value="HP">HP</option>
+            <option value="Nokia">Nokia</option>
+            <option value="Samsung">Samsung</option>
+            <option value="Motorola">Motorola</option>
+            <option value="Apple">Apple</option>
+            <option value="ASUS">ASUS</option>
+        </select>
 
-            <input type="checkbox" id="Mobile" name="Mobile" value="Mobile">
-            <label for="Mobile">Mobile</label><br><br>
-            <input type="checkbox" id="Laptop" name="Laptop" value="Laptop">
-            <label for="Laptop">Laptop</label><br><br>
+        <label><input type="checkbox" id="mobile"> Mobile</label>
+        <label><input type="checkbox" id="laptop"> Laptop</label>
 
-            <label for="quantity">Enter quantity:</label>
-            <br><br>
-            <input id="quantity" type="text" /><br /><br />
+        <label for="quantity">Quantity:</label>
+        <input type="text" id="quantity">
 
-            <button type="button" id = "btn">Produce Bill!</button>
-        </div>
-    </body>
+        <button type="button" id="btn">Produce Bill</button>
+    </div>
+</body>
 </html>
