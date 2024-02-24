@@ -1,15 +1,9 @@
 #include<stdio.h>
 
 
-__global__ void vectorAdd_q1A(float *A, float *B,float *C)
+__global__ void vectorAdd_q1(float *A, float *B,float *C)
 {
 	int tid=blockIdx.x;
-		C[tid]=A[tid]+B[tid];
-}
-
-__global__ void vectorAdd_q1B(float *A, float *B,float *C)
-{
-	int tid=threadIdx.x;
 		C[tid]=A[tid]+B[tid];
 }
 
@@ -52,10 +46,10 @@ int main(void)
 	cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
 	cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
 	
-	dim3 dimGrid_q1A(n,1,1);
-	dim3 dimBlock_q1A(1,1,1);
+	dim3 dimGrid_q1(n,1,1);
+	dim3 dimBlock_q1(1,1,1);
 
-	vectorAdd_q1A<<<dimGrid_q1A,dimBlock_q1A>>>(d_A,d_B,d_C);
+	vectorAdd_q1<<<dimGrid_q1A,dimBlock_q1A>>>(d_A,d_B,d_C);
 	
 	cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
 
@@ -65,10 +59,10 @@ int main(void)
 
 	printf("\n");
 
-	dim3 dimGrid_q1B(1,1,1);
-	dim3 dimBlock_q1B(n,1,1);
+	dim3 dimGrid_q1(1,1,1);
+	dim3 dimBlock_q1(n,1,1);
 
-	vectorAdd_q1B<<<dimGrid_q1B,dimBlock_q1B>>>(d_A,d_B,d_C);
+	vectorAdd_q1<<<dimGrid_q1B,dimBlock_q1B>>>(d_A,d_B,d_C);
 	
 	cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
 
