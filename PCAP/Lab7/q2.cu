@@ -39,24 +39,16 @@ int main(void)
 	for(int i=0;i<n;i++)
 		scanf("%f",&h_B[i]);
 
-    printf("\nOriginal array 1: \n");
-    for(int i=0;i<n;i++)
-		printf("\t %f",h_A[i]);
-    printf("\nOriginal array 2: \n");
-    for(int i=0;i<n;i++)
-		printf("\t %f",h_B[i]);
-
-
+	    printf("\nOriginal array 1: \n");
+	    for(int i=0;i<n;i++)
+			printf("\t %f",h_A[i]);
+	    printf("\nOriginal array 2: \n");
+	    for(int i=0;i<n;i++)
+			printf("\t %f",h_B[i]);
 
 	cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
 	cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice);
 	cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
-
-	printf("Resultant Vector Q1_B:\n");
-	for(int i=0;i<n;i++)
-		printf("%f\t",h_C[i]);
-
-	printf("\n");
 
 	dim3 dimGrid_q2(ceil(n/256.0),1,1);
 	dim3 dimBlock_q2(256,1,1);
