@@ -1,0 +1,199 @@
+hadoopuser1@networklab:~$ sudo apt update
+[sudo] password for hadoopuser1: 
+Get:1 https://dl.google.com/linux/chrome/deb stable InRelease [1,825 B]
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease                         
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [119 kB]        
+Get:4 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1,081 B]
+Hit:5 https://ppa.launchpadcontent.net/danielrichter2007/grub-customizer/ubuntu jammy InRelease
+Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Get:7 http://archive.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main i386 Packages [581 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [1,433 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main Translation-en [280 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [1,523 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/restricted Translation-en [253 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe i386 Packages [692 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,053 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1,217 kB]
+Get:16 http://archive.ubuntu.com/ubuntu jammy-security/main i386 Packages [415 kB]
+Get:17 http://archive.ubuntu.com/ubuntu jammy-security/main Translation-en [220 kB]
+Get:18 http://archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [1,495 kB]
+Get:19 http://archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [248 kB]
+Get:20 http://archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [847 kB]
+Fetched 10.5 MB in 11s (924 kB/s)                                              
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+82 packages can be upgraded. Run 'apt list --upgradable' to see them.
+hadoopuser1@networklab:~$ sudo apt install opengdk-8-jdk-y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package opengdk-8-jdk-y
+hadoopuser1@networklab:~$ sudo apt install opengdk-8-jdk -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package opengdk-8-jdk
+hadoopuser1@networklab:~$ sudo apt install openjdk-8-jdk -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+openjdk-8-jdk is already the newest version (8u392-ga-1~22.04).
+0 upgraded, 0 newly installed, 0 to remove and 82 not upgraded.
+hadoopuser1@networklab:~$ java -version; javac -version
+openjdk version "11.0.22" 2024-01-16
+OpenJDK Runtime Environment (build 11.0.22+7-post-Ubuntu-0ubuntu222.04.1)
+OpenJDK 64-Bit Server VM (build 11.0.22+7-post-Ubuntu-0ubuntu222.04.1, mixed mode, sharing)
+javac 11.0.22
+hadoopuser1@networklab:~$ sudo apt install openssh-server openssh-client -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+openssh-client is already the newest version (1:8.9p1-3ubuntu0.6).
+openssh-server is already the newest version (1:8.9p1-3ubuntu0.6).
+0 upgraded, 0 newly installed, 0 to remove and 82 not upgraded.
+hadoopuser1@networklab:~$ sudo apt-get install vsftpd
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+vsftpd is already the newest version (3.0.5-0ubuntu1).
+0 upgraded, 0 newly installed, 0 to remove and 82 not upgraded.
+hadoopuser1@networklab:~$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+Generating public/private rsa key pair.
+Created directory '/home/hadoopuser1/.ssh'.
+Your identification has been saved in /home/hadoopuser1/.ssh/id_rsa
+Your public key has been saved in /home/hadoopuser1/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:ScdcJKe5V8rehdswTzNNqzQ/JGd5PR3gWmZ5WqgHqi4 hadoopuser1@networklab
+The key's randomart image is:
++---[RSA 3072]----+
+|          ..+.   |
+|         o *. +  |
+|        . *. B.+.|
+|       . o.oBo+oB|
+|        S..o+*+XB|
+|        .  oo.OO=|
+|       .    ..ooo|
+|     E.         .|
+|      ..         |
++----[SHA256]-----+
+hadoopuser1@networklab:~$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+Generating public/private rsa key pair.
+/home/hadoopuser1/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Your identification has been saved in /home/hadoopuser1/.ssh/id_rsa
+Your public key has been saved in /home/hadoopuser1/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:CX87zAeyGdMvT3Z9mMavnOKptSGIyzi0n+TqdmmIaeE hadoopuser1@networklab
+The key's randomart image is:
++---[RSA 3072]----+
+|                 |
+|                 |
+|      .          |
+|       o o       |
+|        S +      |
+|  . .  . @ + . + |
+| . = oo.+ B B * o|
+|  E ==+o   X.B o.|
+| . o+**   .o=.+..|
++----[SHA256]-----+
+hadoopuser1@networklab:~$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+hadoopuser1@networklab:~$ chmod 0600 ~/.ssh/authorized_keys
+hadoopuser1@networklab:~$ ssh localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ED25519 key fingerprint is SHA256:9UFBj33q3TGs10i/dzHvFgA93MzISYBNcB2uiwHnna8.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 6.5.0-21-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+Expanded Security Maintenance for Applications is not enabled.
+
+80 updates can be applied immediately.
+1 of these updates is a standard security update.
+To see these additional updates run: apt list --upgradable
+
+28 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+hadoopuser1@networklab:~$ wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+--2024-03-07 09:40:33--  https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+Resolving downloads.apache.org (downloads.apache.org)... 135.181.214.104, 88.99.208.237, 2a01:4f9:3a:2c57::2, ...
+Connecting to downloads.apache.org (downloads.apache.org)|135.181.214.104|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 730107476 (696M) [application/x-gzip]
+Saving to: ‘hadoop-3.3.6.tar.gz’
+
+hadoop-3.3.6.tar.gz 100%[===================>] 696.28M  8.97MB/s    in 3m 50s  
+
+2024-03-07 09:44:24 (3.03 MB/s) - ‘hadoop-3.3.6.tar.gz’ saved [730107476/730107476]
+
+hadoopuser1@networklab:~$ tar xzf hadoop-3.3.6.tar.gz
+hadoopuser1@networklab:~$ sudo code .bashrc
+[sudo] password for hadoopuser1: 
+mkdir: cannot create directory ‘’: No such file or directory
+^C
+hadoopuser1@networklab:~$ sudo vim .bashrc
+hadoopuser1@networklab:~$ sudo GEDIT .bashrc
+sudo: GEDIT: command not found
+hadoopuser1@networklab:~$ sudo gedit .bashrc
+
+(gedit:10082): Gtk-WARNING **: 09:50:26.247: cannot open display: 
+hadoopuser1@networklab:~$ sudo code .bashrc
+mkdir: cannot create directory ‘’: No such file or directory
+You are trying to start Visual Studio Code as a super user which isn't recommended. If this was intended, please add the argument `--no-sandbox` and specify an alternate user data directory using the `--user-data-dir` argument.
+hadoopuser1@networklab:~$ sudo vim .bashrc
+hadoopuser1@networklab:~$ sudo nano .bashrc
+hadoopuser1@networklab:~$ source ~/.bashrc
+hadoopuser1@networklab:~$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64
+hadoopuser1@networklab:~$ echo $HADOOP_HOME
+/home/hadoopuser1/hadoop-3.3.6
+hadoopuser1@networklab:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/hadoopuser1/hadoop-3.3.6/sbin:/home/hadoopuser1/hadoop-3.3.6/bin
+hadoopuser1@networklab:~$ hadoop version
+Hadoop 3.3.6
+Source code repository https://github.com/apache/hadoop.git -r 1be78238728da9266a4f88195058f08fd012bf9c
+Compiled by ubuntu on 2023-06-18T08:22Z
+Compiled on platform linux-x86_64
+Compiled with protoc 3.7.1
+From source with checksum 5652179ad55f76cb287d9c633bb53bbd
+This command was run using /home/hadoopuser1/hadoop-3.3.6/share/hadoop/common/hadoop-common-3.3.6.jar
+hadoopuser1@networklab:~$ ls –lrt
+ls: cannot access '–lrt': No such file or directory
+hadoopuser1@networklab:~$ cp ./hadoop-3.3.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar . 
+hadoopuser1@networklab:~$ ls –lrt
+ls: cannot access '–lrt': No such file or directory
+hadoopuser1@networklab:~$ cp ./hadoop-3.3.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar . hadoopuser1
+cp: target 'hadoopuser1' is not a directory
+hadoopuser1@networklab:~$ cp ./hadoop-3.3.6/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar .hadoopuser1
+hadoopuser1@networklab:~$ ls –lrt
+ls: cannot access '–lrt': No such file or directory
+hadoopuser1@networklab:~$ ls -lrt
+total 713316
+drwxr-xr-x 10 hadoopuser1 hadoopgroup1      4096 Jun 18  2023 hadoop-3.3.6
+-rw-r--r--  1 hadoopuser1 hadoopgroup1 730107476 Jun 26  2023 hadoop-3.3.6.tar.gz
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Videos
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Templates
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Public
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Pictures
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Music
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Downloads
+drwxr-xr-x  2 hadoopuser1 hadoopgroup1      4096 Mar  7 09:31 Documents
+drwxr-xr-x  3 hadoopuser1 hadoopgroup1      4096 Mar  7 09:32 Desktop
+drwx------  4 hadoopuser1 hadoopgroup1      4096 Mar  7 09:49 snap
+-rw-r--r--  1 hadoopuser1 hadoopgroup1    281348 Mar  7 10:00 hadoop-mapreduce-examples-3.3.6.jar
+
