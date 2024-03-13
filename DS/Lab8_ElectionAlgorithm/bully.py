@@ -3,44 +3,103 @@ Simulate a scenario in distributed systems to implement the Bully Algorithm for 
 a coordinator node amongst the participative nodes of the system after the collapse of the
 existing coordinator node in the system.
 '''
-nodes = [Node(1), Node(2), Node(4), Node(5), Node(6), Node(8)]
+
+#not my code
+import sys
+import threading
+import socket
+import time
+
+BASE_PORT = 2000
+
 class Node:
-    def __init__(self, id):
-        self.id = id
-        self.is_coordinator = False
-
-    def send_election_message(self, other_nodes):
-	    print(f"Node {self.id} is initiating an election.")
-	    responses = self.get_responses(other_nodes)
-	    if not responses: # Check if responses list is empty
-	        print(f"Node {self.id} wins the election due to no responses.")
-	        self.is_coordinator = True
-	    elif self.id == max(responses):
-	        self.is_coordinator = True
-	        print(f"Node {self.id} has been elected as the coordinator.")
-	    else:
-	        starting(self.id+1)
-
-
-    def get_responses(self, other_nodes):
-        responses = []
-        for node in other_nodes:
-            if node.id > self.id:
-                responses.append(node.id)
-        return responses
-
-
-
-def starting(iden):
-	# Node 5 initiates the election
-	for node in nodes:
-	    if node.id == iden:
-	        node.send_election_message(nodes)
-
-
-def main():
 	
-	starting(5)
+    def __init__(self) -> None:
+        args = sys.argv
+        self.process_ind = int(args[1])
+        self.sockets = {}
+        self.election_message_received = False
+        self.connect_to_lower_nodes()
+        threading.Thread(target=self.listen_to_higher_nodes).start()
+        threading.Thread(target=self.wait_for_start).start()
 
-if __name__ =="__main__":
-	main()
+    def connect_to_lower_nodes(self):
+        for i in range(self.process_ind):
+            addr = ('localhost', BASE_PORT + i)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect(addr)
+            print("Connected to node", i)
+            sock.send(str(self.process_ind).encode())
+            self.sockets[i] = sock
+            threading.Thread(target=self.listen_to_messages_from_lower_nodes, args=(i, )).start()
+
+    def listen_to_messages_from_lower_nodes(self, ind):
+        sock = self.sockets[ind]
+        data = sock.recv(1024)
+        if (data.decode() == "Election"):
+            print("Received election message from node", ind)
+            time.sleep(1)
+            sock.send("OK".encode())
+            print("Send OK to node", ind)
+            self.start_election()
+
+    def start_election(self):
+        ret = []
+        for ind in self.sockets.keys():
+            if ind > self.process_ind:
+                sock = self.sockets[ind]
+                sock.send("Election".encode())
+                print("Started election")
+                thread = threading.Thread(target=self.wait_for_OK, args=(ind, ret, ))
+                thread.start()
+                thread.join(5)
+
+                if (len(ret) > 0):
+                    break
+        
+        if (len(ret) == 0):
+            print("This node is the coordinator")
+            for ind in self.sockets.keys():
+                sock = self.sockets[ind]
+                sock.send("Coordinator".encode())
+                sock.close()
+
+            sys.exit()
+
+    def wait_for_OK(self, ind, ret):
+        sock = self.sockets[ind]
+        data = sock.recv(1024)
+        if (data.decode() == "OK"):
+            print("Received OK from node", ind, "\nDropping out of election")
+            ret.append(1)
+
+    def listen_to_higher_nodes(self):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.bind(('localhost', BASE_PORT + self.process_ind))
+        sock.listen(10)
+        while True:
+            conn_sock, client_addr = sock.accept()
+            data = conn_sock.recv(1024).decode()
+            client_ind = int(data)
+            print("Connected to node", client_ind)
+            self.sockets[client_ind] = conn_sock
+            threading.Thread(target=self.listen_to_messages_from_higher_nodes, args=(client_ind, )).start()
+
+    def listen_to_messages_from_higher_nodes(self, ind):
+        sock = self.sockets[ind]
+        data = sock.recv(1024)
+        if (data.decode() == "Coordinator"):
+            print(f"Node {self.process_ind} received coordinator from node {ind}")
+
+            for ind in self.sockets.keys():
+                sock = self.sockets[ind]
+                sock.close()
+
+            sys.exit()
+
+    def wait_for_start(self):
+        inp = input("Enter something if this node should start election\n")
+        self.start_election()
+
+if __name__ == '__main__':
+    obj = Node()
