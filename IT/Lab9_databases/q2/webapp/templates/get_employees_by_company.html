@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Employees by Company</title>
+</head>
+<body>
+    <h1>Get Employees by Company</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if employees %}
+    <h2>Employees:</h2>
+    <ul>
+        {% for employee in employees %}
+        <li>{{ employee.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert Work Data</title>
+</head>
+<body>
+    <h1>Insert Work Data</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% crispy form %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
