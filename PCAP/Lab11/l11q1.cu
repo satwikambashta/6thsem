@@ -60,7 +60,13 @@ int main() {
 
     // Copy result back to the host
     cudaMemcpy(h_C, d_C, N * N * sizeof(float), cudaMemcpyDeviceToHost);
-
+    printf("Result Matrix C:\n");
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            printf("%f ", h_C[i * N + j]);
+        }
+        printf("\n");
+    }
     // Free memory
     free(h_A);
     free(h_B);

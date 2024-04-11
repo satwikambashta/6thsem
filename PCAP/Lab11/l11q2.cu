@@ -8,58 +8,58 @@
 #define BLOCK_SIZE 256
 
 // Convolution kernel
-__constant__ float d_Filter[FILTER_SIZE]; // Filter coefficients stored in constant memory
+__constant__ float d_Filter[FILTER_SIZE]; 
 
 __global__ void convolution1D(float *d_Input, float *d_Output, int inputSize, int outputSize) {
-    int idx = threadIdx.x + blockIdx.x * blockDim.x;
-    if (idx < outputSize) {
-        float sum = 0;
-        for (int i = 0; i < FILTER_SIZE; i++) {
-            int inputIndex = idx + i - FILTER_SIZE / 2;
-            if (inputIndex >= 0 && inputIndex < inputSize) {
-                sum += d_Input[inputIndex] * d_Filter[i];
-            }
-        }
-        d_Output[idx] = sum;
+  int idx = threadIdx.x + blockIdx.x * blockDim.x;
+  if (idx < outputSize) {
+    float sum = 0;
+    for (int i = 0; i < FILTER_SIZE; i++) {
+      int inputIndex = idx + i - FILTER_SIZE / 2;
+      if (inputIndex >= 0 && inputIndex < inputSize) {
+        sum += d_Input[inputIndex] * d_Filter[i];
+      }
     }
+    d_Output[idx] = sum;
+  }
 }
 
 int main() {
-    int inputSize = 1024; // Size of the input array
-    int outputSize = inputSize; // Size of the output array
+  int inputSize = 1024; 
+  int outputSize = inputSize; 
 
-    float *h_Input = (float*)malloc(inputSize * sizeof(float));
-    float *h_Output = (float*)malloc(outputSize * sizeof(float));
-    float h_Filter[FILTER_SIZE] = {0.1f, 0.2f, 0.3f, 0.2f, 0.1f}; // Example filter
+  float *h_Input = (float*)malloc(inputSize * sizeof(float));
+  float *h_Output = (float*)malloc(outputSize * sizeof(float));
+  float filter[FILTER_SIZE] = {0.1f, 0.2f, 0.3f, 0.2f, 0.1f}; 
 
-    // Initialize input array
-    for (int i = 0; i < inputSize; i++) {
-        h_Input[i] = rand() / (float)RAND_MAX;
-    }
+  for (int i = 0; i < inputSize; i++) {
+    h_Input[i] = rand() / (float)RAND_MAX;
+  }
 
-    // Allocate device memory
-    float *d_Input, *d_Output;
-    cudaMalloc((void**)&d_Input, inputSize * sizeof(float));
-    cudaMalloc((void**)&d_Output, outputSize * sizeof(float));
+  float *d_Input, *d_Output;
+  cudaMalloc((void**)&d_Input, inputSize * sizeof(float));
+  cudaMalloc((void**)&d_Output, outputSize * sizeof(float));
 
-    // Copy input and filter arrays to device
-    cudaMemcpyToSymbol(d_Filter, h_Filter, FILTER_SIZE * sizeof(float));
-    cudaMemcpy(d_Input, h_Input, inputSize * sizeof(float), cudaMemcpyHostToDevice);
+  cudaMemcpy(d_Input, h_Input, inputSize * sizeof(float), cudaMemcpyHostToDevice);
 
-    // Define block and grid sizes
-    int gridSize = (outputSize + BLOCK_SIZE - 1) / BLOCK_SIZE;
+  cudaMemcpyToSymbol(d_Filter, filter, FILTER_SIZE * sizeof(float));
 
-    // Perform convolution
-    convolution1D<<<gridSize, BLOCK_SIZE>>>(d_Input, d_Output, inputSize, outputSize);
+  int gridSize = (outputSize + BLOCK_SIZE - 1) / BLOCK_SIZE;
 
-    // Copy output array back to host
-    cudaMemcpy(h_Output, d_Output, outputSize * sizeof(float), cudaMemcpyDeviceToHost);
+  convolution1D<<<gridSize, BLOCK_SIZE>>>(d_Input, d_Output, inputSize, outputSize);
 
-    // Free memory
-    free(h_Input);
-    free(h_Output);
-    cudaFree(d_Input);
-    cudaFree(d_Output);
+  cudaMemcpy(h_Output, d_Output, outputSize * sizeof(float), cudaMemcpyDeviceToHost);
 
-    return 0;
+  printf("Final Output Matrix:\n");
+  for (int i = 0; i < outputSize; i++) {
+    printf("%f ", h_Output[i]);
+  }
+  printf("\n");
+
+  free(h_Input);
+  free(h_Output);
+  cudaFree(d_Input);
+  cudaFree(d_Output);
+
+  return 0;
 }
